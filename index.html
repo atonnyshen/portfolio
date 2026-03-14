@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沈建志｜老派靈魂，柔軟的字</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--
+    ╔════════════════════════════════════════════════════════╗
+    ║  ⚠️  不要修改這個檔案！                                 ║
+    ║  所有文字內容請到 content.js 修改。                       ║
+    ║  這裡只是骨架 (Template)，由 JS 自動填入內容。            ║
+    ╚════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Hero Section -->
+    <header id="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <span class="eyebrow" data-aos="fade-up" id="t-hero-eyebrow"></span>
+            <h1 data-aos="fade-up" data-aos-delay="200" id="t-hero-name"></h1>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="400" id="t-hero-tagline"></p>
+            <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="600">
+                <div class="mouse"></div>
+                <span id="t-hero-scroll"></span>
+            </div>
+            <div class="hero-bottom-bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="container">
+            <h2 class="section-title" data-aos="fade-right" id="t-about-title"></h2>
+            <div class="grid">
+                <div class="content" data-aos="fade-up" id="t-about-left"></div>
+                <div class="content" data-aos="fade-up" data-aos-delay="200" id="t-about-right"></div>
+            </div>
+        </section>
+
+        <!-- Coordinates Section (Reading List) -->
+        <section id="coordinates" class="bg-alt">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-right" id="t-reading-title"></h2>
+                <div class="reading-grid" id="t-reading-grid">
+                    <!-- 由 JS 自動生成閱讀卡片 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section -->
+        <section id="works" class="container">
+            <h2 class="section-title" data-aos="fade-right" id="t-works-title"></h2>
+            <div id="t-works-container">
+                <!-- 由 JS 自動生成作品分類與卡片 -->
+            </div>
+        </section>
+
+        <!-- Visual Gallery Section -->
+        <section id="gallery" class="container">
+            <h2 class="section-title" data-aos="fade-right" id="t-gallery-title"></h2>
+            <div class="gallery-grid" id="t-gallery-grid">
+                <!-- 由 JS 自動生成視覺素材 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" id="t-footer">
+            <!-- 由 JS 自動生成頁尾 -->
+        </div>
+    </footer>
+
+    <!-- 載入內容設定檔 (你只需要修改這個檔案) -->
+    <script src="content.js"></script>
+
+    <!-- 模板引擎 (不要動這裡) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const C = SITE_CONTENT;
+
+        // ── Hero ──
+        document.getElementById('t-hero-eyebrow').textContent = C.hero.eyebrow;
+        document.getElementById('t-hero-name').textContent = C.hero.name;
+        document.getElementById('t-hero-tagline').textContent = C.hero.tagline;
+        document.getElementById('t-hero-scroll').textContent = C.hero.scrollHint;
+
+        // ── About ──
+        document.getElementById('t-about-title').textContent = C.about.title;
+        document.getElementById('t-about-left').innerHTML =
+            C.about.leftColumn.map(p => `<p>${p}</p>`).join('');
+        document.getElementById('t-about-right').innerHTML =
+            C.about.rightColumn.map(p => `<p>${p}</p>`).join('');
+
+        // ── Reading ──
+        document.getElementById('t-reading-title').textContent = C.reading.title;
+        const readingGrid = document.getElementById('t-reading-grid');
+        C.reading.cards.forEach((card, i) => {
+            const delay = i * 200;
+            const listItems = card.items.map(item => `<li>${item}</li>`).join('');
+            readingGrid.innerHTML += `
+                <div class="reading-card" data-aos="zoom-in" data-aos-delay="${delay}">
+                    <h3>${card.heading}</h3>
+                    <ul>${listItems}</ul>
+                </div>`;
+        });
+
+        // ── Works ──
+        document.getElementById('t-works-title').textContent = C.works.title;
+        const worksContainer = document.getElementById('t-works-container');
+        C.works.categories.forEach(cat => {
+            let piecesHTML = '';
+            cat.pieces.forEach((piece, i) => {
+                const linkHTML = piece.url
+                    ? `<a href="${piece.url}" class="work-link" target="_blank">${piece.title}<span>→</span></a>`
+                    : `<span class="work-link-static">${piece.title}</span>`;
+                const noteHTML = piece.note ? `<span class="work-note">（${piece.note}）</span>` : '';
+                piecesHTML += `
+                    <div class="work-item" data-aos="fade-up" data-aos-delay="${i * 100}">
+                        <blockquote>「${piece.quote}」</blockquote>
+                        ${linkHTML}${noteHTML}
+                    </div>`;
+            });
+            worksContainer.innerHTML += `
+                <div class="works-category">
+                    <h3>${cat.heading}</h3>
+                    <div class="works-grid">${piecesHTML}</div>
+                </div>`;
+        });
+
+        // ── Visual Gallery ──
+        document.getElementById('t-gallery-title').textContent = C.visualGallery.title;
+        const galleryGrid = document.getElementById('t-gallery-grid');
+        C.visualGallery.items.forEach((item, i) => {
+            galleryGrid.innerHTML += `
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${i * 150}">
+                    <div class="gallery-img-container">
+                        <img src="${item.image}" alt="${item.alt}">
+                    </div>
+                    <p class="gallery-caption">${item.caption}</p>
+                </div>`;
+        });
+
+        // ── Footer ──
+        document.getElementById('t-footer').innerHTML = `
+            <p>${C.footer.blogLabel}<a href="${C.footer.blogUrl}">${C.footer.blogName}</a></p>
+            <p class="copyright">${C.footer.copyright}</p>`;
+
+        // ── 動畫系統 (Intersection Observer) ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+
+        // ── 進度條與指示器控制 ──
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progress-bar').style.width = (winScroll / height) * 100 + '%';
+
+            // 捲動過一定距離後隱藏滑鼠指示器與底部色塊
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const bottomBar = document.querySelector('.hero-bottom-bar');
+            
+            if (winScroll > 5) {
+                // 指示器淡出並稍微下移，增加動感
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.transform = 'translateX(-50%) translateY(20px)';
+                scrollIndicator.style.pointerEvents = 'none';
+                
+                // 底部色塊收縮淡出
+                bottomBar.style.transform = 'scaleX(0)';
+                bottomBar.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.transform = 'translateX(-50%) translateY(0)';
+                scrollIndicator.style.pointerEvents = 'auto';
+                
+                bottomBar.style.transform = 'scaleX(1)';
+                bottomBar.style.opacity = '1';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
