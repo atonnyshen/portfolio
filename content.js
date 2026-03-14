@@ -169,9 +169,10 @@ const SITE_CONTENT = {
         title: "看更多",
         items: [
             {
-                image: "assets/oa_qrcode.jpg",
+                image: "assets/oa_preview.png",
+                imageQR: "assets/oa_qrcode.jpg",
                 caption: "微信公眾號「食飽未胡同」",
-                alt: "WeChat OA QR Code"
+                alt: "WeChat OA"
             },
             {
                 image: "assets/blog_preview.png",

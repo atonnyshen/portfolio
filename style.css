@@ -393,7 +393,7 @@ footer a {
     object-fit: cover;
     object-position: top center; /* Default for OA */
     display: block;
-    transition: transform 1.2s ease;
+    transition: transform 1.2s ease, opacity 0.4s ease;
 }
 
 /* Specific Crop for Blog (to hide the "四神湯" header) */

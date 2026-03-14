@@ -141,10 +141,46 @@
         document.getElementById('t-gallery-title').textContent = C.visualGallery.title;
         const galleryGrid = document.getElementById('t-gallery-grid');
         C.visualGallery.items.forEach((item, i) => {
-            const inner = `<div class="gallery-img-container"><img src="${item.image}" alt="${item.alt}"></div><p class="gallery-caption">${item.caption}</p>`;
-            galleryGrid.innerHTML += item.url
-                ? `<a class="gallery-item" href="${item.url}" target="_blank" data-aos="fade-up" data-aos-delay="${i * 150}" style="text-decoration:none;color:inherit;">${inner}</a>`
-                : `<div class="gallery-item" data-aos="fade-up" data-aos-delay="${i * 150}">${inner}</div>`;
+            const element = item.url
+                ? document.createElement('a')
+                : document.createElement('div');
+            element.className = 'gallery-item';
+            element.setAttribute('data-aos', 'fade-up');
+            element.setAttribute('data-aos-delay', i * 150);
+            if (item.url) {
+                element.href = item.url;
+                element.target = '_blank';
+                element.style.textDecoration = 'none';
+                element.style.color = 'inherit';
+            }
+
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.alt;
+
+            const container = document.createElement('div');
+            container.className = 'gallery-img-container';
+            container.appendChild(img);
+
+            const caption = document.createElement('p');
+            caption.className = 'gallery-caption';
+            caption.textContent = item.caption;
+
+            element.appendChild(container);
+            element.appendChild(caption);
+
+            // ── 切換效果：如果有 imageQR，點擊切換圖片 ──
+            if (item.imageQR && !item.url) {
+                element.style.cursor = 'pointer';
+                let isQR = false;
+                element.addEventListener('click', () => {
+                    isQR = !isQR;
+                    img.src = isQR ? item.imageQR : item.image;
+                    img.alt = isQR ? 'QR Code' : item.alt;
+                });
+            }
+
+            galleryGrid.appendChild(element);
         });
 
         // ── Footer ──
