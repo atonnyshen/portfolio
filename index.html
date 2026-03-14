@@ -141,18 +141,14 @@
         document.getElementById('t-gallery-title').textContent = C.visualGallery.title;
         const galleryGrid = document.getElementById('t-gallery-grid');
         C.visualGallery.items.forEach((item, i) => {
-            galleryGrid.innerHTML += `
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${i * 150}">
-                    <div class="gallery-img-container">
-                        <img src="${item.image}" alt="${item.alt}">
-                    </div>
-                    <p class="gallery-caption">${item.caption}</p>
-                </div>`;
+            const inner = `<div class="gallery-img-container"><img src="${item.image}" alt="${item.alt}"></div><p class="gallery-caption">${item.caption}</p>`;
+            galleryGrid.innerHTML += item.url
+                ? `<a class="gallery-item" href="${item.url}" target="_blank" data-aos="fade-up" data-aos-delay="${i * 150}" style="text-decoration:none;color:inherit;">${inner}</a>`
+                : `<div class="gallery-item" data-aos="fade-up" data-aos-delay="${i * 150}">${inner}</div>`;
         });
 
         // ── Footer ──
         document.getElementById('t-footer').innerHTML = `
-            <p>${C.footer.blogLabel}<a href="${C.footer.blogUrl}">${C.footer.blogName}</a></p>
             <p class="copyright">${C.footer.copyright}</p>`;
 
         // ── 動畫系統 (Intersection Observer) ──

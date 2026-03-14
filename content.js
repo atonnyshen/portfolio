@@ -169,14 +169,15 @@ const SITE_CONTENT = {
         title: "看更多",
         items: [
             {
-                image: "assets/oa_preview.png",
+                image: "assets/oa_qrcode.jpg",
                 caption: "微信公眾號「食飽未胡同」",
-                alt: "WeChat OA Screenshot"
+                alt: "WeChat OA QR Code"
             },
             {
                 image: "assets/blog_preview.png",
                 caption: "部落格「四神湯」",
-                alt: "Blog Screenshot"
+                alt: "Blog Screenshot",
+                url: "https://soupfour.blogspot.com/"
             }
         ]
     },
@@ -185,9 +186,6 @@ const SITE_CONTENT = {
     // 🔗 頁尾 (Footer)
     // ─────────────────────────────────────────────────
     footer: {
-        blogLabel: "生活定錨點：",
-        blogName: "四神湯部落格",
-        blogUrl: "https://soupfour.blogspot.com/",
         copyright: "© 2026 Shen Chien-Chih. All rights reserved.",
     },
 };
