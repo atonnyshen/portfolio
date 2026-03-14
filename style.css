@@ -416,6 +416,32 @@ footer a {
     padding-top: 15px;
 }
 
+.gallery-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(176,141,87,0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+.gallery-item:hover .gallery-hint {
+    opacity: 1;
+}
+
+.gallery-img-container {
+    position: relative; /* Ensure hint is positioned relative to container */
+}
+
 /* Response for Gallery */
 @media (max-width: 768px) {
     .gallery-grid {

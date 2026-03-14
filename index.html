@@ -172,11 +172,24 @@
             // ── 切換效果：如果有 imageQR，點擊切換圖片 ──
             if (item.imageQR && !item.url) {
                 element.style.cursor = 'pointer';
+                const hint = document.createElement('div');
+                hint.className = 'gallery-hint';
+                hint.textContent = 'Tap to View QR Code';
+                container.appendChild(hint);
+
                 let isQR = false;
-                element.addEventListener('click', () => {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
                     isQR = !isQR;
-                    img.src = isQR ? item.imageQR : item.image;
-                    img.alt = isQR ? 'QR Code' : item.alt;
+                    
+                    // 平滑切換效果
+                    img.style.opacity = '0';
+                    setTimeout(() => {
+                        img.src = isQR ? item.imageQR : item.image;
+                        img.alt = isQR ? 'QR Code' : item.alt;
+                        img.style.opacity = '1';
+                        hint.textContent = isQR ? 'Tap to Close' : 'Tap to View QR Code';
+                    }, 200);
                 });
             }
 
