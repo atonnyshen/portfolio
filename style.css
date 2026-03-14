@@ -418,20 +418,21 @@ footer a {
 
 .gallery-hint {
     position: absolute;
-    top: 50%;
+    bottom: 15px; /* Moved from 50% to bottom */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%); /* Removed vertical translate */
     background: rgba(176,141,87,0.9);
     color: white;
-    padding: 8px 16px;
+    padding: 6px 14px; /* Slightly more compact */
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* Slightly smaller */
     font-family: 'Outfit', sans-serif;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
     pointer-events: none;
     z-index: 5;
     white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .gallery-item:hover .gallery-hint {
