@@ -338,39 +338,58 @@ blockquote {
 
 /* Footer */
 footer {
-    padding: 60px 0; /* 加深間距增加留白美感 */
+    padding: 100px 30px 60px; /* 增加頂部留白，營造儀式感 */
     text-align: center;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .footer-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #888;
 }
 
-.footer-contact a {
-    color: var(--accent-color);
+.contact-label {
+    font-weight: 300;
+}
+
+.contact-sep {
+    opacity: 0.3;
+}
+
+.email-link {
+    color: var(--accent);
     text-decoration: none;
-    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     transition: all 0.3s ease;
     border-bottom: 1px solid transparent;
 }
 
-.footer-contact a:hover {
-    border-bottom: 1px solid var(--accent-color);
-    opacity: 0.8;
+.email-link .icon {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.email-link:hover {
+    border-bottom: 1px solid var(--accent);
+    opacity: 1;
+    transform: translateY(-1px);
 }
 
 .copyright {
     font-family: 'Noto Serif TC', serif;
-    font-size: 0.8rem;
-    color: #999;
-    letter-spacing: 0.02em;
-    margin-top: 30px;
-    opacity: 0.5;
+    font-size: 0.75rem;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    font-weight: 300;
 }
 
 /* Visual Gallery */

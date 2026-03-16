@@ -198,7 +198,13 @@
 
         // ── Footer ──
         const footerInfo = C.footer.email 
-            ? `<div class="footer-contact">聯絡我：<a href="mailto:${C.footer.email}">${C.footer.email}</a></div>` 
+            ? `<div class="footer-contact">
+                <span class="contact-label">聯絡我</span>
+                <span class="contact-sep">/</span>
+                <a href="mailto:${C.footer.email}" class="email-link">
+                    <span class="icon">✉</span>${C.footer.email}
+                </a>
+               </div>` 
             : '';
         document.getElementById('t-footer').innerHTML = `
             ${footerInfo}
