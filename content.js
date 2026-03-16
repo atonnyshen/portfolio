@@ -187,6 +187,7 @@ const SITE_CONTENT = {
     // 🔗 頁尾 (Footer)
     // ─────────────────────────────────────────────────
     footer: {
+        email: "atonny@gmail.com",
         copyright: "© 2026 Shen Chien-Chih. All rights reserved.",
     },
 };

@@ -198,7 +198,10 @@
 
         // ── Footer ──
         document.getElementById('t-footer').innerHTML = `
-            <p class="copyright">${C.footer.copyright}</p>`;
+            <div class="footer-content">
+                <a href="mailto:${C.footer.email}" class="footer-email">${C.footer.email}</a>
+                <p class="copyright">${C.footer.copyright}</p>
+            </div>`;
 
         // ── 動畫系統 (Intersection Observer) ──
         const observer = new IntersectionObserver((entries) => {
