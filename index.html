@@ -197,11 +197,12 @@
         });
 
         // ── Footer ──
+        const footerInfo = C.footer.email 
+            ? `<div class="footer-contact">聯絡我：<a href="mailto:${C.footer.email}">${C.footer.email}</a></div>` 
+            : '';
         document.getElementById('t-footer').innerHTML = `
-            <div class="footer-content">
-                <a href="mailto:${C.footer.email}" class="footer-email">${C.footer.email}</a>
-                <p class="copyright">${C.footer.copyright}</p>
-            </div>`;
+            ${footerInfo}
+            <p class="copyright">${C.footer.copyright}</p>`;
 
         // ── 動畫系統 (Intersection Observer) ──
         const observer = new IntersectionObserver((entries) => {

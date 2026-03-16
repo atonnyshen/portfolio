@@ -338,20 +338,38 @@ blockquote {
 
 /* Footer */
 footer {
-    padding: 80px 30px;
+    padding: 60px 0; /* 加深間距增加留白美感 */
     text-align: center;
-    background: var(--alt-bg);
+    border-top: 1px solid var(--border-color);
 }
 
-footer a {
-    color: var(--accent);
+.footer-contact {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+}
+
+.footer-contact a {
+    color: var(--accent-color);
     text-decoration: none;
-    font-weight: 600;
+    margin-left: 8px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.footer-contact a:hover {
+    border-bottom: 1px solid var(--accent-color);
+    opacity: 0.8;
 }
 
 .copyright {
-    margin-top: 30px;
+    font-family: 'Noto Serif TC', serif;
     font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 0.02em;
+    margin-top: 30px;
     opacity: 0.5;
 }
 
